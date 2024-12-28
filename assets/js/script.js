@@ -393,24 +393,26 @@ for (let i = 0; i < formInputs.length; i++) {
 
 
 
-// page navigation variables
+// Add page navigation functionality
 const navigationLinks = document.querySelectorAll("[data-nav-link]");
 const pages = document.querySelectorAll("[data-page]");
 
-// add event to all nav link
-for (let i = 0; i < navigationLinks.length; i++) {
-  navigationLinks[i].addEventListener("click", function () {
+// Add click event to each navigation link
+navigationLinks.forEach(link => {
+  link.addEventListener("click", function() {
+    // Remove active class from all links
+    navigationLinks.forEach(link => link.classList.remove("active"));
+    
+    // Add active class to clicked link
+    this.classList.add("active");
 
-    for (let i = 0; i < pages.length; i++) {
-      if (this.innerHTML.toLowerCase() === pages[i].dataset.page) {
-        pages[i].classList.add("active");
-        navigationLinks[i].classList.add("active");
-        window.scrollTo(0, 0);
-      } else {
-        pages[i].classList.remove("active");
-        navigationLinks[i].classList.remove("active");
-      }
-    }
+    // Get the page name from the link text
+    const pageName = this.textContent.toLowerCase();
 
+    // Hide all pages
+    pages.forEach(page => page.classList.remove("active"));
+
+    // Show selected page
+    document.querySelector(`[data-page="${pageName}"]`).classList.add("active");
   });
-}
+});
