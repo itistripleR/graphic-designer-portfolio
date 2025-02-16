@@ -7,8 +7,6 @@ import Portfolio from './components/Portfolio';
 import Blog from './components/Blog';
 import Contact from './components/Contact';
 
-import GravityTags from './components/GravityTags';
-
 function App() {
   const [activeSection, setActiveSection] = useState('about');
 
@@ -30,8 +28,7 @@ function App() {
   };
 
   return (
-    <>
-      <GravityTags />
+    <>    
       <main>
         <Sidebar />
         <div className="main-content">
